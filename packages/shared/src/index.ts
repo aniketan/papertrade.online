@@ -10,6 +10,7 @@ export interface PaperTrade {
   strike: number;
   lotSize: number;
   entryPrice: number;
+  entryCost: number;
   entryTime: string;
   exitPrice?: number;
   exitTime?: string;

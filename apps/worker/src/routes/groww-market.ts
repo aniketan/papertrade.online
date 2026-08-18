@@ -65,6 +65,7 @@ async function marketSnapshot(request: Request): Promise<Response> {
     "/live-data/quote?exchange=NSE&segment=CASH&trading_symbol=NIFTY",
     body.accessToken
   );
+  const nifty = readNumber((quote as Record<string, unknown>).last_price);
   const expiries = await growwFetch(
     `/historical/expiries?exchange=NSE&underlying_symbol=NIFTY&year=${now.getUTCFullYear()}`,
     body.accessToken
@@ -83,11 +84,11 @@ async function marketSnapshot(request: Request): Promise<Response> {
   return json({
     ok: true,
     snapshot: {
-      nifty: readNumber((quote as Record<string, unknown>).last_price),
+      nifty,
       readAt: now.toISOString(),
       expiry,
-      calls: options.filter((option) => option.optionType === "CE").slice(0, 5),
-      puts: options.filter((option) => option.optionType === "PE").slice(0, 5)
+      calls: selectNearSpotOptions(options, "CE", nifty),
+      puts: selectNearSpotOptions(options, "PE", nifty)
     }
   });
 }
@@ -170,6 +171,18 @@ function parseOptionChain(value: unknown): OptionQuote[] {
   }
 
   return rows.sort((left, right) => left.strike - right.strike);
+}
+
+function selectNearSpotOptions(options: readonly OptionQuote[], optionType: "CE" | "PE", spot: number | null): OptionQuote[] {
+  const side = options.filter((option) => option.optionType === optionType);
+  if (spot === null) {
+    return side.slice(0, 5);
+  }
+
+  return [...side]
+    .sort((left, right) => Math.abs(left.strike - spot) - Math.abs(right.strike - spot) || left.strike - right.strike)
+    .slice(0, 5)
+    .sort((left, right) => left.strike - right.strike);
 }
 
 function readNumber(value: unknown): number | null {

@@ -10,6 +10,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment: production
+    concurrency:
+      group: production
+      cancel-in-progress: false
     permissions:
       contents: read
     steps:
@@ -27,6 +31,10 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm build
+
+      - name: Validate Cloudflare Worker bundle
+        working-directory: apps/worker
+        run: pnpm exec wrangler deploy --dry-run
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v4

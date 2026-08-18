@@ -46,6 +46,12 @@ button:hover {
   filter: brightness(1.08);
 }
 
+button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(.45);
+  opacity: .62;
+}
+
 .secondary {
   background: #203552;
 }
@@ -149,6 +155,10 @@ button:hover {
   color: #50e5af;
 }
 
+.bad {
+  color: #ff8aa8;
+}
+
 .setup-strip {
   align-items: center;
   display: flex;
@@ -174,6 +184,33 @@ button:hover {
   display: flex;
   flex: none;
   gap: 8px;
+}
+
+.auto-refresh {
+  align-items: center;
+  background: #0b1929;
+  border: 1px solid #365275;
+  border-radius: 7px;
+  color: #c7d5ea;
+  display: flex;
+  flex: none;
+  gap: 6px;
+  font-weight: 700;
+  min-height: 32px;
+  padding: 7px 9px;
+}
+
+.auto-refresh input {
+  accent-color: #00b97f;
+  margin: 0;
+  padding: 0;
+}
+
+.auto-refresh span {
+  color: #c7d5ea;
+  font-size: 10px;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .option-chain {
@@ -304,7 +341,7 @@ th,
 td {
   border-bottom: 1px solid #2a405e;
   padding: 10px 7px;
-  text-align: left;
+  text-align: center;
 }
 
 th {
@@ -313,6 +350,21 @@ th {
 
 td {
   color: #f7fbff;
+}
+
+.exit-time {
+  color: #8298b5;
+  font-size: 10px;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.paper-exit {
+  background: #203552;
+  font-size: 10px;
+  padding: 6px 10px;
 }
 
 .credential-modal {

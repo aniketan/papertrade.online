@@ -1,5 +1,9 @@
 # Papertrade Online
 
+Live: https://papertrade.online/
+
+Repository: https://github.com/aniketan/papertrade.online
+
 Papertrade Online is a browser-local paper trading simulator for NIFTY-style workflows.
 
 The public app is designed around one hard boundary: it can read market data, but it must not place, modify, or cancel real broker orders.
