@@ -1,9 +1,9 @@
-name: Deploy Worker
+name: Manual Wrangler Deploy
 
+# Normal production deploys are handled by Cloudflare Workers Builds
+# through the Cloudflare Workers & Pages GitHub App. This workflow is
+# intentionally manual-only for emergency Wrangler deploys.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
