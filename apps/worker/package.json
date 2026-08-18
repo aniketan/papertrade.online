@@ -1,0 +1,23 @@
+{
+  "name": "@papertrade/worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@papertrade/core": "workspace:*",
+    "@papertrade/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260818.1",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8",
+    "wrangler": "^4.123.0"
+  }
+}

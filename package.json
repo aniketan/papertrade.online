@@ -1,0 +1,28 @@
+{
+  "name": "papertrade-online",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Browser-local paper trading simulator with a read-only Groww market-data proxy.",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @papertrade/web dev",
+    "dev:worker": "pnpm --filter @papertrade/worker dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint:safety": "node scripts/forbid-real-orders.mjs",
+    "check": "pnpm lint:safety && pnpm -r typecheck && pnpm -r test"
+  },
+  "keywords": [
+    "paper-trading",
+    "groww",
+    "cloudflare-workers",
+    "nifty"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@9.12.3",
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

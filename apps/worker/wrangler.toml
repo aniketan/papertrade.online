@@ -1,0 +1,18 @@
+name = "papertrade-online"
+main = "src/index.ts"
+compatibility_date = "2026-08-18"
+compatibility_flags = ["nodejs_compat"]
+account_id = "388b9fa1bee1a6bf0b532baf98c320ec"
+workers_dev = true
+routes = [
+  { pattern = "papertrade.online/*", zone_name = "papertrade.online" },
+  { pattern = "www.papertrade.online/*", zone_name = "papertrade.online" }
+]
+
+[assets]
+directory = "../web/dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[vars]
+APP_ENV = "production"
